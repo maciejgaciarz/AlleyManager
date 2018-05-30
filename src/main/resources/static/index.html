@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html ng-app = "ReservationManager.controllers">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script type="text/javascript" src="/app.js"></script>
+    <script type="text/javascript" src="/ReservationController.js"></script>
+    <script type="text/javascript" src="/AddReservationController.js"></script>
+    <script type="text/javascript" src="/DeleteReservationController.js"></script>
+</head>
+<style>
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+    div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+</style>
+<style>
+    #reservations {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 80%;
+    }
+
+    #reservations td, #reservations th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+
+    #reservations tr:nth-child(even){background-color: #f2f2f2;}
+
+    #reservations tr:hover {background-color: #ddd;}
+
+    #reservations th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
+
+
+<body>
+<div>
+<h1>Maciej's bowling center - best in universe</h1>
+    <h2> List of all reservations:  </h2>
+</div>
+<div  ng-controller="ReservationController1">
+
+    <table id = "reservations">
+        <tr>
+            <th>ID of reservation: </th>
+            <th>Time reservation started: </th>
+            <th>Time reservation ended: </th>
+            <th>Playing user ID: </th>
+            <th>Used track ID: </th>
+        </tr>
+
+        <tr ng-repeat = "x in myJsonResponse">
+            <td>{{ x.id }}</td>
+            <td>{{ x.timeStarted }}</td>
+            <td>{{ x.timeEnding }}</td>
+            <td>{{ x.playingUserId }}</td>
+            <td>{{ x.usedTrackId }}</td>
+            <td><button type = "button" ng-click = "DeleteReservation(3)"  >  Delete </button></td>
+        </tr>
+
+    </table>
+
+</div>
+
+<div ng-controller="ReservationController2">
+
+    ID of reservation:
+    <input type="text" ng-model="id" />
+
+    Time reservation started:
+    <input type="text" ng-model="timeStarted" />
+
+    Time reservation ended:
+    <input type="text" ng-model="timeEnding" />
+
+    Playing user id:
+    <input type="text" ng-model="playingUserId" />
+
+    Used track id:
+    <input type="text" ng-model="usedTrackId" />
+
+   <li><button ng-click="AddReservation()"> Add Reservation </button></li>
+
+</div>
+
+</body>
+</html>
